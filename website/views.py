@@ -53,12 +53,15 @@ def listar_coachs(request):
 
 # Essa função para ser acionada, além de precisar de uma requisição, ela vai precisar de um id que é passado para ele durante o for que tem no 'listar_coachs.html'
 def apagar_item(request, id):
+
+    # Varíavel que irá abrigar objeto baseado no id
     item_apagar = Coach.objects.get(id=id)
+
+    # Irá acessar o objeto ativo da váriavel 'item_apagar' e trocar seu valor para False
     item_apagar.ativo = False
+
+    # Irá salvar no banco de dados as alterações feitas
     item_apagar.save()
+
+    # Irá redirecionar para a página dos coachs
     return redirect('/listar/coachs')
-    # if item is not None:
-    #     item.ativo = False
-    #     item.save()
-    #     return redirect('/coachs/listar')
-    # return render (request, 'listar_coachs.html', {'msg': 'apagou'})
