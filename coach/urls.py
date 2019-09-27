@@ -29,5 +29,8 @@ urlpatterns = [
     path('', views.index),
 
     # Depois que foi criado a página listar_coachs, foi necessário adicionar mais um endereço que é o 'listar/coachs' que ao ser acessado irá executar a função 'listar_coachs' que está no arquivo views.py
-    path('listar/coachs', views.listar_coachs)
+    path('listar/coachs', views.listar_coachs),
+
+    # Aqui o endereço está acompanhado de <int:id> que irá
+    path('listar/delete/<int:id>', views.apagar_item)
 ]

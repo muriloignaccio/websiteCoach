@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Importando do arquivo models dentro da pasta website todas as classes
 from website.models import *
@@ -41,7 +41,7 @@ def index(request):
 def listar_coachs(request):
 
     # Criando um váriavel com o nome de 'lista_objetos' que irá abrigar todos os objetos da classe Coach que constam no banco de dados
-    lista_objetos = Coach.objects.all()
+    lista_objetos = Coach.objects.filter(ativo = True)
 
     # Criando um dicionário com uma entrada chamada 'listar_coachs' que abriga a váriavel lista_objetos
     args = {
@@ -50,3 +50,15 @@ def listar_coachs(request):
 
     # Irá retornar uma renderização através da requisição com a página listar_coachs e o dicionário criado acima
     return render(request, 'listar_coachs.html', args)
+
+# Essa função para ser acionada, além de precisar de uma requisição, ela vai precisar de um id que é passado para ele durante o for que tem no 'listar_coachs.html'
+def apagar_item(request, id):
+    item_apagar = Coach.objects.get(id=id)
+    item_apagar.ativo = False
+    item_apagar.save()
+    return redirect('/listar/coachs')
+    # if item is not None:
+    #     item.ativo = False
+    #     item.save()
+    #     return redirect('/coachs/listar')
+    # return render (request, 'listar_coachs.html', {'msg': 'apagou'})
