@@ -1,0 +1,30 @@
+<!-- Utilizando a base criada com a estrutura do HTML -->
+{% block content %}
+
+    <!-- Criado um head -->
+    <h1>Seja seu Compromisso</h1>
+
+    <!-- Criado um parágrafo -->
+    <p>Cadastre sua frase coach</p>
+
+    <!-- Criado uma âncora (texto clicável), que ao ser clicado irá redirecionar para listar_coachs.html -->
+    <a href="listar/coachs">Clique aqui, para ver quem se cadastrou!</a>
+
+    <!-- Criado um parágrafo que irá abrigar o valor de 'sucesso' do dicionário 'args' dentro da função index no arquivo views -->
+    <p>{{sucesso}}</p>
+
+    <!-- Criado um formulário com o método de POST, ou seja, a requisição irá enviar os dados preenchidos para o banco de dados -->
+    <form method="POST">
+
+        <!-- Essa tag está chamando um token, que é uma forma de validação, é um numero bem grande impossível de ser descoberto e a cada submit será gerado um novo -->
+        {% csrf_token %}
+
+        <label for="">Nome: </label>
+        <input type="text" name="nome" id="">
+        <label for="">Frase Inspiradora: </label>
+        <input type="text" name="frase" id="">
+        <label for="">Pessoa que motivou:</label>
+        <input type="text" name="inspirador" id="">
+        <input type="submit" value="Enviar">
+    </form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% block content %}
+<!-- Criado um head que possui um marquee dentro, marquee é uma ferramenta que faz o conteúdo dele ficar rolando pelo seu container, não deve ser utilizado -->
+<h1><marquee>Lista de suas frases perfeitas</marquee></h1>
+
+<!-- Utilizando através do django o for para pegar cada item da 'listar_coachs' que é uma lista que possui todos os dados cadastrados, para cada item ele irá repetir o bloco de código abaixo, cada vez preenchendo com item selecionado  -->
+{% for item in listar_coachs %}
+
+    <!-- Criado um parágrafo e dentro dele utilizei uma tag do django que irá acessar o atributo 'nome' da variável item -->
+    <p>Nome do Coach: {{item.nome}}</p>
+
+    <!-- Outro parágrafo com uma tag que irá acessar o atributo 'frase' da variável item -->
+    <p>Motive-se: {{item.frase}}</p>
+
+    <!-- Parágrafo com uma tag que irá acessar o atributo 'inspirador' da variável item -->
+    <p>Quem foi sua inspiration: {{item.inspirador}}</p>
+
+    <!-- Essa tag cria uma linha que compoe toda a largura da tela -->
+    <hr>
+
+    <!-- Tag que representa o final do for -->
+{% endfor %}
+{% endblock %}
